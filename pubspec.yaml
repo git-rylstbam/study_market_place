@@ -1,0 +1,125 @@
+name: study_market_place
+description: "Study Market Place."
+publish_to: 'none'
+
+version: 1.0.0+1
+
+environment:
+  sdk: ^3.8.1
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  cupertino_icons: ^1.0.8
+
+  get: ^4.7.2
+  lottie: ^3.3.1
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+  flutter_lints: ^5.0.0
+
+flutter:
+
+  uses-material-design: true
+
+  assets:
+    - assets/
+    - assets/png/
+    - assets/lottie/
+
+  fonts:
+    - family: 汉仪篆书繁
+      fonts:
+        - asset: assets/fonts/汉仪篆书繁.ttf
+
+    - family: 思源黑体
+      fonts:
+        - asset: assets/fonts/SourceHanSansSC-ExtraLight-2.otf
+
+    - family: 青鸟华光繁仿宋
+      fonts:
+        - asset: assets/fonts/QingNiaoHuaGuangFanFangSong-2.ttf
+
+    - family: 鼎猎宋刻体
+      fonts:
+        - asset: assets/fonts/dingliesongtypeface20241217-2.ttf
+
+    - family: 鼎猎伙伴体
+      fonts:
+        - asset: assets/fonts/dingliehuobanfont20241217-2.ttf
+
+    - family: 周字方体
+      fonts:
+        - asset: assets/fonts/ZhouZiFangTi241010-TTF-2.ttf
+
+    - family: 鼎猎珠海体
+      fonts:
+        - asset: assets/fonts/dingliezhuhaifont-20240831GengXinBan)-2.ttf
+
+    - family: 周字宋体
+      fonts:
+        - asset: assets/fonts/ZhouZiSongTi7000Zi-2.otf
+
+    - family: 猫啃忘形圆
+      fonts:
+        - asset: assets/fonts/MaoKenWangXingYuan-2.ttf
+
+    - family: 文鼎PL简报宋
+      fonts:
+        - asset: assets/fonts/gbsn00lp-2.ttf
+
+    - family: 文鼎PL细上海宋
+      fonts:
+        - asset: assets/fonts/bsmi00lp-2.ttf
+
+    - family: 小可奶酪体
+      fonts:
+        - asset: assets/fonts/XiaoKeNaiLaoTiShangYongMianFei@QingKeZiTi-2.ttf
+
+    - family: 飞花宋体
+      fonts:
+        - asset: assets/fonts/FeiHuaSongTi-2.ttf
+
+    - family: 三极素纤简体
+      fonts:
+        - asset: assets/fonts/SanJiSuXianJianTi-2.ttf
+
+    - family: Roboto
+      fonts:
+        - asset: assets/fonts/Roboto.ttf
+
+    - family: Crystal
+      fonts:
+        - asset: assets/fonts/Crystal-Regular-2.ttf
+
+    - family: NoteScript-Regular
+      fonts:
+        - asset: assets/fonts/Note-Script-Regular-2.ttf
+
+    - family: NoteScript-SemiBold
+      fonts:
+        - asset: assets/fonts/Note-Script-SemiBold-2.ttf
+
+    - family: NoteScript-Bold
+      fonts:
+        - asset: assets/fonts/Note-Script-Bold-2.ttf
+
+    - family: NoteScript-ExtraBold
+      fonts:
+        - asset: assets/fonts/Note-Script-ExtraBold-2.ttf
+
+    - family: NoteScript-Light
+      fonts:
+        - asset: assets/fonts/Note-Script-Light-2.ttf
+
+    - family: NoteScript-Medium
+      fonts:
+        - asset: assets/fonts/Note-Script-Medium-2.ttf
+
+    - family: Balymond
+      fonts:
+        - asset: assets/fonts/Balymond-2.ttf
