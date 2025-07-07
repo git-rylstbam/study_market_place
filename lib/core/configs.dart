@@ -17,5 +17,6 @@ abstract class EnvConfig {
   static const test = 'test';
   static const prod = 'prod';
 
-  static const String appName = 'Study Market Place';
+  static const  appName = 'Study Market Place';
+  static const logoName = 'Links Field';
 }

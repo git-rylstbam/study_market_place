@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:study_market_place/core/configs.dart';
+import 'package:study_market_place/widgets/lf_elevated_button.dart';
 // import 'package:study_market_place/pages/login/page.dart';
 import 'package:study_market_place/widgets/lf_label_textfield.dart';
 
@@ -56,6 +57,14 @@ class _LoginBlockState extends State<LoginBlock> {
           controller: _secretController,
           labelText: 'Password',
           onSubmitted: (_) => _login(),
+        ),
+        const SizedBox(height: 18.0),
+        LFElevatedButton(
+          label: 'Login',
+          height: 44.0,
+          textStyle: const TextStyle(fontSize: 17.0),
+          isExpanded: true,
+          onPressed: _login,
         ),
       ],
     ),

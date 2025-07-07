@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
+import 'package:study_market_place/core/configs.dart';
 
 import '../../resources/colors.dart';
 import 'widgets/login_block.dart';
@@ -30,7 +31,7 @@ class LoginPage extends StatefulWidget {
 class LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) =>
-      Scaffold(body: Stack(children: [_background, _icon, _block]));
+      Scaffold(body: Stack(children: [_background, _logo, _block]));
 
   Widget get _background => Align(
     alignment: Alignment.bottomLeft,
@@ -54,10 +55,10 @@ class LoginPageState extends State<LoginPage> {
     ),
   );
 
-  Widget get _icon => Positioned(
+  Widget get _logo => Positioned(
     left: 32.0,
     top: 22.0,
-    child: Image.asset('assets/png/logo.png', width: 220.0, fit: BoxFit.fill),
+    child: Text(EnvConfig.logoName, style: TextStyle(fontSize: 60.0)),
   );
 
   Widget get _block => Align(
