@@ -6,8 +6,8 @@ import 'resources/colors.dart';
 /// Author: Lee
 /// Description:
 
-const kZhDefaultFont = '青鸟华光繁仿宋';
-const kEnDefaultFont = 'NoteScript-SemiBold';
+const fontFamily = 'NoteScript-SemiBold';
+const fontFamilyFallback = ['NoteScript-SemiBold', '青鸟华光繁仿宋'];
 
 const kTFBorder = OutlineInputBorder(
   borderRadius: BorderRadius.all(Radius.circular(4.0)),
@@ -29,11 +29,12 @@ const fonts = [
   '小可奶酪体',
   '飞花宋体',
   '三极素纤简体',
+  'NoteScript-SemiBold',
 ];
 
 final lightTheme = ThemeData(
-  fontFamily: kEnDefaultFont,
-  fontFamilyFallback: [kZhDefaultFont],
+  fontFamily: fontFamily,
+  fontFamilyFallback: fontFamilyFallback,
   colorScheme: ColorScheme.fromSeed(
     seedColor: MyColors.defaultColor,
     primary: MyColors.defaultColor,
@@ -101,67 +102,144 @@ final lightTheme = ThemeData(
   textTheme: const TextTheme(
     displayLarge: TextStyle(
       color: MyColors.defaultColor,
-      fontFamily: kEnDefaultFont,
-      fontFamilyFallback: [kZhDefaultFont],
+      fontFamily: fontFamily,
+      fontFamilyFallback: fontFamilyFallback,
     ),
     displayMedium: TextStyle(
       color: MyColors.defaultColor,
-      fontFamily: kEnDefaultFont,
-      fontFamilyFallback: [kZhDefaultFont],
+      fontFamily: fontFamily,
+      fontFamilyFallback: fontFamilyFallback,
     ),
     displaySmall: TextStyle(
       color: MyColors.defaultColor,
-      fontFamily: kEnDefaultFont,
-      fontFamilyFallback: [kZhDefaultFont],
+      fontFamily: fontFamily,
+      fontFamilyFallback: fontFamilyFallback,
     ),
     headlineLarge: TextStyle(
       color: MyColors.defaultColor,
-      fontFamily: kEnDefaultFont,
-      fontFamilyFallback: [kZhDefaultFont],
+      fontFamily: fontFamily,
+      fontFamilyFallback: fontFamilyFallback,
     ),
     headlineMedium: TextStyle(
       color: MyColors.defaultColor,
-      fontFamily: kEnDefaultFont,
-      fontFamilyFallback: [kZhDefaultFont],
+      fontFamily: fontFamily,
+      fontFamilyFallback: fontFamilyFallback,
     ),
     headlineSmall: TextStyle(
       color: MyColors.defaultColor,
-      fontFamily: kEnDefaultFont,
-      fontFamilyFallback: [kZhDefaultFont],
+      fontFamily: fontFamily,
+      fontFamilyFallback: fontFamilyFallback,
     ),
     bodySmall: TextStyle(
       color: MyColors.defaultColor,
-      fontFamily: kEnDefaultFont,
-      fontFamilyFallback: [kZhDefaultFont],
+      fontFamily: fontFamily,
+      fontFamilyFallback: fontFamilyFallback,
     ),
     bodyMedium: TextStyle(
       color: MyColors.defaultColor,
-      fontFamily: kEnDefaultFont,
-      fontFamilyFallback: [kZhDefaultFont],
+      fontFamily: fontFamily,
+      fontFamilyFallback: fontFamilyFallback,
     ),
     bodyLarge: TextStyle(
       color: MyColors.defaultColor,
-      fontFamily: kEnDefaultFont,
-      fontFamilyFallback: [kZhDefaultFont],
+      fontFamily: fontFamily,
+      fontFamilyFallback: fontFamilyFallback,
     ),
     titleSmall: TextStyle(
       fontSize: 14,
       fontWeight: FontWeight.bold,
       color: MyColors.defaultColor,
-      fontFamily: kEnDefaultFont,
-      fontFamilyFallback: [kZhDefaultFont],
+      fontFamily: fontFamily,
+      fontFamilyFallback: fontFamilyFallback,
     ),
     titleMedium: TextStyle(
       fontWeight: FontWeight.bold,
       color: MyColors.defaultColor,
-      fontFamily: kEnDefaultFont,
-      fontFamilyFallback: [kZhDefaultFont],
+      fontFamily: fontFamily,
+      fontFamilyFallback: fontFamilyFallback,
     ),
     labelSmall: TextStyle(
       fontSize: 14,
       color: MyColors.defaultColor,
-      fontFamily: kEnDefaultFont,
-      fontFamilyFallback: [kZhDefaultFont],
+      fontFamily: fontFamily,
+      fontFamilyFallback: fontFamilyFallback,
+    ),
+  ),
+  elevatedButtonTheme: ElevatedButtonThemeData(
+    style: ButtonStyle(
+      shape: const WidgetStatePropertyAll(
+        RoundedRectangleBorder(
+          borderRadius: BorderRadius.all(Radius.circular(6.0)),
+        ),
+      ),
+      side: WidgetStateProperty.resolveWith((states) {
+        if (states.contains(WidgetState.disabled)) {
+          return BorderSide.none;
+        }
+        return const BorderSide(color: MyColors.defaultColor);
+      }),
+      textStyle: const WidgetStatePropertyAll(
+        TextStyle(
+          fontSize: 14.0,
+          fontFamily: fontFamily,
+          fontFamilyFallback: fontFamilyFallback,
+          fontWeight: FontWeight.w600,
+        ),
+      ),
+      minimumSize: const WidgetStatePropertyAll(Size(.0, 40.0)),
+      alignment: Alignment.center,
+      padding: const WidgetStatePropertyAll(
+        EdgeInsets.symmetric(horizontal: 14.0),
+      ),
+      iconSize: const WidgetStatePropertyAll(16.0),
+      backgroundColor: const WidgetStatePropertyAll(Colors.white),
+      surfaceTintColor: const WidgetStatePropertyAll(Colors.white),
+      foregroundColor: WidgetStateColor.resolveWith((states) {
+        if (states.contains(WidgetState.disabled)) {
+          return MyColors.disableColor;
+        }
+        return Colors.white;
+      }),
+      elevation: const WidgetStatePropertyAll(4.0),
+      shadowColor: const WidgetStatePropertyAll(MyColors.defaultColor),
+      overlayColor: const WidgetStatePropertyAll(MyColors.defaultColor),
+    ),
+  ),
+  popupMenuTheme: PopupMenuThemeData(
+    color: Colors.white,
+    surfaceTintColor: Colors.white,
+    shape: const RoundedRectangleBorder(
+      borderRadius: BorderRadius.all(Radius.circular(10.0)),
+    ),
+    elevation: 6.0,
+    textStyle: const TextStyle(
+      fontSize: 14.0,
+      fontFamily: fontFamily,
+      fontFamilyFallback: fontFamilyFallback,
+    ),
+    labelTextStyle: WidgetStateProperty.resolveWith((states) {
+      if (states.contains(WidgetState.disabled)) {
+        return const TextStyle(
+          color: MyColors.disableColor,
+          fontFamily: fontFamily,
+          fontFamilyFallback: fontFamilyFallback,
+        );
+      }
+      return const TextStyle(
+        color: MyColors.defaultColor,
+        fontFamily: fontFamily,
+        fontFamilyFallback: fontFamilyFallback,
+      );
+    }),
+  ),
+  dropdownMenuTheme: const DropdownMenuThemeData(
+    menuStyle: MenuStyle(
+      shape: WidgetStatePropertyAll(
+        RoundedRectangleBorder(
+          borderRadius: BorderRadius.all(Radius.circular(10.0)),
+        ),
+      ),
+      backgroundColor: WidgetStatePropertyAll(Colors.white),
     ),
   ),
 );

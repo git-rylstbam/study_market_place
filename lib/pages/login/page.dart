@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:study_market_place/core/configs.dart';
+import 'package:study_market_place/theme.dart';
 
 import '../../resources/colors.dart';
 import 'widgets/login_block.dart';
@@ -63,7 +64,7 @@ class LoginPageState extends State<LoginPage> {
 
   Widget get _block => Align(
     alignment: const Alignment(.8, .0),
-    child: Stack(children: [_input]),
+    child: Stack(children: [_input, _fontSwitcher]),
   );
 
   Widget get _input => AnimatedContainer(
@@ -85,6 +86,24 @@ class LoginPageState extends State<LoginPage> {
     child: SingleChildScrollView(
       padding: const EdgeInsets.symmetric(vertical: 80.0, horizontal: 66.0),
       child: LoginBlock(),
+    ),
+  );
+
+  Widget get _fontSwitcher => Positioned(
+    top: 24.0,
+    right: 24.0,
+    child: Material(
+      type: MaterialType.transparency,
+      child: TooltipVisibility(
+        visible: false,
+        child: PopupMenuButton(
+          itemBuilder: (_) => fonts
+              .map((e) => PopupMenuItem(child: Text(e.toString())))
+              .toList(),
+          onSelected: (e) {},
+          icon: const Icon(Icons.translate, size: 24.0),
+        ),
+      ),
     ),
   );
 }
