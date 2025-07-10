@@ -18,7 +18,7 @@ abstract class MyConfigs {
   bool get debugTabFormJumpVerify => false;
 }
 
-class MpConfigs extends MyConfigs {
+class LFConfigs extends MyConfigs {
   @override
   String get baseOrigin => EnvConfig.isProd
       ? 'https://mppro.linksfield.net'

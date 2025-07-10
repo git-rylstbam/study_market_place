@@ -10,7 +10,6 @@ const fontFamily = 'NoteScript-SemiBold';
 const fontFamilyFallback = ['NoteScript-SemiBold', '青鸟华光繁仿宋'];
 
 const kTFBorder = OutlineInputBorder(
-  borderRadius: BorderRadius.all(Radius.circular(4.0)),
   borderSide: BorderSide(color: MyColors.defaultColor),
 );
 
@@ -84,16 +83,16 @@ final lightTheme = ThemeData(
       return const TextStyle(color: Color(0xFFC4C8D7));
     }),
     enabledBorder: kTFBorder.copyWith(
-      borderSide: BorderSide(color: MyColors.disableColor),
+      borderSide: const BorderSide(color: MyColors.disableColor),
     ),
     disabledBorder: kTFBorder.copyWith(
-      borderSide: BorderSide(color: MyColors.disableColor),
+      borderSide: const BorderSide(color: MyColors.disableColor),
     ),
     errorBorder: kTFBorder.copyWith(
-      borderSide: BorderSide(color: MyColors.errorColor),
+      borderSide: const BorderSide(color: MyColors.errorColor),
     ),
     focusedErrorBorder: kTFBorder.copyWith(
-      borderSide: BorderSide(color: MyColors.errorColor),
+      borderSide: const BorderSide(color: MyColors.errorColor),
     ),
     focusedBorder: kTFBorder,
     errorStyle: const TextStyle(color: MyColors.errorColor),
@@ -101,66 +100,66 @@ final lightTheme = ThemeData(
   ),
   textTheme: const TextTheme(
     displayLarge: TextStyle(
-      color: MyColors.defaultColor,
+      color: MyColors.textColor,
       fontFamily: fontFamily,
       fontFamilyFallback: fontFamilyFallback,
     ),
     displayMedium: TextStyle(
-      color: MyColors.defaultColor,
+      color: MyColors.textColor,
       fontFamily: fontFamily,
       fontFamilyFallback: fontFamilyFallback,
     ),
     displaySmall: TextStyle(
-      color: MyColors.defaultColor,
+      color: MyColors.textColor,
       fontFamily: fontFamily,
       fontFamilyFallback: fontFamilyFallback,
     ),
     headlineLarge: TextStyle(
-      color: MyColors.defaultColor,
+      color: MyColors.textColor,
       fontFamily: fontFamily,
       fontFamilyFallback: fontFamilyFallback,
     ),
     headlineMedium: TextStyle(
-      color: MyColors.defaultColor,
+      color: MyColors.textColor,
       fontFamily: fontFamily,
       fontFamilyFallback: fontFamilyFallback,
     ),
     headlineSmall: TextStyle(
-      color: MyColors.defaultColor,
+      color: MyColors.textColor,
       fontFamily: fontFamily,
       fontFamilyFallback: fontFamilyFallback,
     ),
     bodySmall: TextStyle(
-      color: MyColors.defaultColor,
+      color: MyColors.textColor,
       fontFamily: fontFamily,
       fontFamilyFallback: fontFamilyFallback,
     ),
     bodyMedium: TextStyle(
-      color: MyColors.defaultColor,
+      color: MyColors.textColor,
       fontFamily: fontFamily,
       fontFamilyFallback: fontFamilyFallback,
     ),
     bodyLarge: TextStyle(
-      color: MyColors.defaultColor,
+      color: MyColors.textColor,
       fontFamily: fontFamily,
       fontFamilyFallback: fontFamilyFallback,
     ),
     titleSmall: TextStyle(
       fontSize: 14,
       fontWeight: FontWeight.bold,
-      color: MyColors.defaultColor,
+      color: MyColors.textColor,
       fontFamily: fontFamily,
       fontFamilyFallback: fontFamilyFallback,
     ),
     titleMedium: TextStyle(
       fontWeight: FontWeight.bold,
-      color: MyColors.defaultColor,
+      color: MyColors.textColor,
       fontFamily: fontFamily,
       fontFamilyFallback: fontFamilyFallback,
     ),
     labelSmall: TextStyle(
       fontSize: 14,
-      color: MyColors.defaultColor,
+      color: MyColors.textColor,
       fontFamily: fontFamily,
       fontFamilyFallback: fontFamilyFallback,
     ),

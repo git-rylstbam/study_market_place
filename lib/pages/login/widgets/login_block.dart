@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:study_market_place/core/configs.dart';
-import 'package:study_market_place/widgets/lf_elevated_button.dart';
+
+import '../../../core/configs.dart';
+import '../../../http/http.dart';
+import '../../../widgets/lf_elevated_button.dart';
 // import 'package:study_market_place/pages/login/page.dart';
-import 'package:study_market_place/widgets/lf_label_textfield.dart';
+import '../../../widgets/lf_label_textfield.dart';
+import '../../../widgets/lf_toast.dart';
+import '../model/login_model.dart';
 
 /// CreateDate: 2025/7/4 17:23
 /// Author: Lee
@@ -39,7 +43,7 @@ class _LoginBlockState extends State<LoginBlock> {
       mainAxisSize: MainAxisSize.min,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(
+        const Text(
           'Sign In',
           style: TextStyle(fontSize: 32.0, fontWeight: FontWeight.bold),
         ),
@@ -70,5 +74,13 @@ class _LoginBlockState extends State<LoginBlock> {
     ),
   );
 
-  Future<void> _login() async {}
+  Future<void> _login() async {
+    final body = LoginRequestEntity(
+      username: _emailController.text,
+      password: _secretController.text,
+    );
+    final value = await Http.getLoginApi().login(body);
+    if (value.isFaield) return;
+    LFToast.toast(value.data?.access_token);
+  }
 }

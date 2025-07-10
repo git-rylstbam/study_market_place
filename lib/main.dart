@@ -2,11 +2,16 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:study_market_place/routes.dart';
-import 'package:study_market_place/theme.dart';
+import 'package:get_storage/get_storage.dart';
 
-void main() {
+import 'core/app_service.dart';
+import 'routes.dart';
+import 'theme.dart';
+
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await GetStorage.init();
+  Get.put(AppService());
   runApp(const MyApp());
 }
 

@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:study_market_place/resources/colors.dart';
+
+import '../resources/colors.dart';
 
 /// CreateDate: 2025/7/7 10:03
 /// Author: Lee
@@ -143,7 +144,6 @@ class _FutureElevatedButtonState extends State<_FutureElevatedButton> {
         : widget.label,
     autofocus: widget.autofocus,
     style: widget.style,
-    tooltip: _isLoading ? 'Loading...' : widget.tooltip,
     icon: widget.icon == null
         ? null
         : AnimatedSwitcher(
@@ -152,26 +152,21 @@ class _FutureElevatedButtonState extends State<_FutureElevatedButton> {
           ),
   );
 
-  Widget _buildLoadingIndicator(BuildContext context) {
-    final iconTheme = IconTheme.of(context);
-    final applyTextScaling = iconTheme.applyTextScaling ?? false;
-    final tentativeIconSize = iconTheme.size ?? kDefaultFontSize;
-    final iconSize =
-        ((applyTextScaling
-                    ? MediaQuery.textScalerOf(context).scale(tentativeIconSize)
-                    : tentativeIconSize) -
-                2.0)
-            .clamp(4.0, 16.0);
-    return SizedBox(
-      width: iconSize,
-      height: iconSize,
-      child: Center(
-        child: CupertinoActivityIndicator(
+  Widget _buildLoadingIndicator(BuildContext context) => Center(
+    child: Row(
+      spacing: 10.0,
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        CupertinoActivityIndicator(
           color: widget.style?.foregroundColor?.resolve({}),
         ),
-      ),
-    );
-  }
+        const Text(
+          'Loading...',
+          style: TextStyle(fontSize: 14.0, fontWeight: FontWeight.w600),
+        ),
+      ],
+    ),
+  );
 }
 
 class _Child extends StatelessWidget {

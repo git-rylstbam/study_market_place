@@ -1,10 +1,12 @@
 import 'package:dio/dio.dart';
 
-/// CreateDate: 2025/7/7 11:30
+import '../../core/app_service.dart';
+
+/// CreateDate: 2025/7/8 16:20
 /// Author: Lee
 /// Description:
 
-class HeaderInterceptor extends InterceptorsWrapper {
+class HeaderInterceptors extends InterceptorsWrapper {
   @override
   Future<void> onRequest(
     RequestOptions options,
@@ -17,8 +19,11 @@ class HeaderInterceptor extends InterceptorsWrapper {
     }
     options.headers
       ..putIfAbsent('Content-Type', () => 'application/json')
-      ..putIfAbsent('Authorization', () => '')
-      ..putIfAbsent('Accept-Language', () => '');
+      ..putIfAbsent('Authorization', () => AppService().token ?? '')
+      ..putIfAbsent(
+        'Accept-Language',
+        () => AppService().locale?.toLanguageTag() ?? 'en-US',
+      );
     return super.onRequest(options, handler);
   }
 }

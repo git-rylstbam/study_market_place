@@ -10,6 +10,9 @@ import 'pages/login/page.dart';
 abstract class Routes {
   static const home = '/';
 
+  static const loading = '/loading';
+  static const error = '/error';
+
   static const login = '/login';
 
   static final routes = [GetPage(name: home, page: () => const HomePage())];

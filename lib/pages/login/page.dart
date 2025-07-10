@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:lottie/lottie.dart';
-import 'package:study_market_place/core/configs.dart';
-import 'package:study_market_place/theme.dart';
 
+import '../../core/configs.dart';
 import '../../resources/colors.dart';
+import '../../theme.dart';
+import 'widgets/login_background.dart';
 import 'widgets/login_block.dart';
 
 /// CreateDate: 2025/7/4 16:24
@@ -34,19 +34,15 @@ class LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) =>
       Scaffold(body: Stack(children: [_background, _logo, _block]));
 
-  Widget get _background => Align(
+  Widget get _background => const Align(
     alignment: Alignment.bottomLeft,
     child: Stack(
-      alignment: const Alignment(-.65, .2),
+      alignment: Alignment(-.75, .55),
       children: [
-        Lottie.asset(
-          'assets/lottie/background.json',
-          addRepaintBoundary: true,
-          fit: BoxFit.cover,
-        ),
+        LoginBackground(),
         Text(
           _kWelcomeText,
-          style: const TextStyle(
+          style: TextStyle(
             fontSize: 60.0,
             fontWeight: FontWeight.bold,
             color: Colors.white,
@@ -56,7 +52,7 @@ class LoginPageState extends State<LoginPage> {
     ),
   );
 
-  Widget get _logo => Positioned(
+  Widget get _logo => const Positioned(
     left: 32.0,
     top: 22.0,
     child: Text(EnvConfig.logoName, style: TextStyle(fontSize: 60.0)),
@@ -83,8 +79,8 @@ class LoginPageState extends State<LoginPage> {
         ),
       ],
     ),
-    child: SingleChildScrollView(
-      padding: const EdgeInsets.symmetric(vertical: 80.0, horizontal: 66.0),
+    child: const SingleChildScrollView(
+      padding: EdgeInsets.symmetric(vertical: 80.0, horizontal: 66.0),
       child: LoginBlock(),
     ),
   );
@@ -97,9 +93,8 @@ class LoginPageState extends State<LoginPage> {
       child: TooltipVisibility(
         visible: false,
         child: PopupMenuButton(
-          itemBuilder: (_) => fonts
-              .map((e) => PopupMenuItem(child: Text(e.toString())))
-              .toList(),
+          itemBuilder: (_) =>
+              fonts.map((e) => PopupMenuItem(child: Text(e))).toList(),
           onSelected: (e) {},
           icon: const Icon(Icons.translate, size: 24.0),
         ),
