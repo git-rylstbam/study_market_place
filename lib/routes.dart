@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import 'pages/home/page.dart';
-import 'pages/login/page.dart';
+import 'pages/dashboard/page.dart';
 
 /// CreateDate: 2025/7/4 16:02
 /// Author: Lee
@@ -16,9 +15,10 @@ abstract class Routes {
 
   static const login = '/login';
 
+  static const dashboard = '/SIM_Dashboard';
+
   static final routes = [
-    GetPage(name: login, page: () => const LoginPage()),
-    GetPage(name: home, page: () => const HomePage()),
+    GetPage(name: dashboard, page: () => const DashboardPage()),
   ];
 
   static final loadingPage = GetPage(

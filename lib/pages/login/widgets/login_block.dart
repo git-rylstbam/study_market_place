@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
 import '../../../core/app_service.dart';
 import '../../../core/configs.dart';
-import '../../../extensions/get_extension.dart';
 import '../../../http/http.dart';
+import '../../../main.dart';
 import '../../../routes.dart';
 import '../../../widgets/lf_elevated_button.dart';
 import '../../../widgets/lf_label_textfield.dart';
@@ -90,6 +89,10 @@ class _LoginBlockState extends State<LoginBlock> {
     final value = await Http.getLoginApi().queryUserInfo(token: token);
     if (value.isFaield) return;
     await AppService.to.saveUserInfo(token, value);
-    Get.lfOffNamedUntil(Routes.home);
+    _toHomePage();
+  }
+
+  void _toHomePage() {
+    Globals.outNavigatorState.pushReplacementNamed(Routes.home);
   }
 }

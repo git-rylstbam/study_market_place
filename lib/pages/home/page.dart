@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import '../../core/app_service.dart';
 import '../../core/configs.dart';
@@ -18,7 +19,9 @@ const _kTabLabelPaddingEdgeHorizontal = 6.0;
 const _kTabLabelBorderRadius = Radius.circular(22.0);
 
 class HomePage extends StatefulWidget {
-  const HomePage({super.key});
+  const HomePage({super.key, this.child});
+
+  final Widget? child;
 
   @override
   State<HomePage> createState() => _HomePageState();
@@ -187,18 +190,20 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
         ),
       ),
       Expanded(
-        child: ValueListenableBuilder(
-          valueListenable: _selectChildNotifier,
-          builder: (_, value, __) => Center(
-            child: Text(
-              value?.meta?.title ?? '未知',
-              style: const TextStyle(
-                fontSize: 120.0,
-                fontWeight: FontWeight.w600,
+        child:
+            widget.child ??
+            ValueListenableBuilder(
+              valueListenable: _selectChildNotifier,
+              builder: (_, value, __) => Center(
+                child: Text(
+                  value?.meta?.title ?? '未知',
+                  style: const TextStyle(
+                    fontSize: 120.0,
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
               ),
             ),
-          ),
-        ),
       ),
     ],
   );
@@ -226,7 +231,10 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                 )
                 .toList() ??
             [],
-        onTap: (index) => _selectChildNotifier.value = value?.children?[index],
+        onTap: (index) {
+          _selectChildNotifier.value = value?.children?[index];
+          Get.toNamed(_selectChildNotifier.value?.path ?? '');
+        },
       ),
     ],
   );
@@ -236,6 +244,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
     if (value.isFaield) return;
     if (value.data == null || value.data!.isEmpty) return;
     _routersNotifier.value = value.data!;
+    _selectChildNotifier.value = value.data![0].children?[0];
     _hTabController = TabController(length: value.data!.length, vsync: this);
   }
 }

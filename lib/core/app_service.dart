@@ -3,7 +3,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../extensions/get_extension.dart';
+import '../main.dart';
 import '../routes.dart';
 import '../util/storage.dart';
 import 'keys.dart';
@@ -49,6 +49,6 @@ class AppService extends GetxService {
     await storage.remove(Keys.key_token);
     await storage.remove(Keys.key_user_info);
     _userInfo = null;
-    Get.lfOffNamedUntil(Routes.login);
+    Globals.outNavigatorState.pushReplacementNamed(Routes.login);
   }
 }
