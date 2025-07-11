@@ -204,6 +204,24 @@ final lightTheme = ThemeData(
       overlayColor: const WidgetStatePropertyAll(MyColors.defaultColor),
     ),
   ),
+  tabBarTheme: const TabBarThemeData(
+    indicatorSize: TabBarIndicatorSize.label,
+    dividerColor: Colors.transparent,
+    labelColor: MyColors.defaultColor,
+    unselectedLabelColor: MyColors.textColor,
+    labelStyle: TextStyle(
+      fontSize: 14.0,
+      fontWeight: FontWeight.w600,
+      fontFamily: fontFamily,
+      fontFamilyFallback: fontFamilyFallback,
+    ),
+    unselectedLabelStyle: TextStyle(
+      fontSize: 14.0,
+      fontWeight: FontWeight.w600,
+      fontFamily: fontFamily,
+      fontFamilyFallback: fontFamilyFallback,
+    ),
+  ),
   popupMenuTheme: PopupMenuThemeData(
     color: Colors.white,
     surfaceTintColor: Colors.white,

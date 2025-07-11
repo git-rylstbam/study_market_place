@@ -6,15 +6,15 @@ part of 'home_model.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-MenuRouterMeta _$MenuRouterMetaFromJson(Map<String, dynamic> json) =>
-    MenuRouterMeta(
+RouterMetaEntity _$RouterMetaEntityFromJson(Map<String, dynamic> json) =>
+    RouterMetaEntity(
       title: json['title'] as String?,
       icon: json['icon'] as String?,
       noCache: json['noCache'] as bool?,
       link: json['link'] as String?,
     );
 
-Map<String, dynamic> _$MenuRouterMetaToJson(MenuRouterMeta instance) =>
+Map<String, dynamic> _$RouterMetaEntityToJson(RouterMetaEntity instance) =>
     <String, dynamic>{
       'title': instance.title,
       'icon': instance.icon,
@@ -22,7 +22,7 @@ Map<String, dynamic> _$MenuRouterMetaToJson(MenuRouterMeta instance) =>
       'link': instance.link,
     };
 
-MenuRouter _$MenuRouterFromJson(Map<String, dynamic> json) => MenuRouter(
+RouterEntity _$RouterEntityFromJson(Map<String, dynamic> json) => RouterEntity(
       path: json['path'] as String?,
       id: (json['id'] as num?)?.toInt(),
       name: json['name'] as String?,
@@ -31,15 +31,15 @@ MenuRouter _$MenuRouterFromJson(Map<String, dynamic> json) => MenuRouter(
       component: json['component'] as String?,
       meta: json['meta'] == null
           ? null
-          : MenuRouterMeta.fromJson(json['meta'] as Map<String, dynamic>),
+          : RouterMetaEntity.fromJson(json['meta'] as Map<String, dynamic>),
       redirect: json['redirect'] as String?,
       alwaysShow: json['alwaysShow'] as bool?,
-      children: (json['children'] as List<dynamic>)
-          .map((e) => MenuRouterChild.fromJson(e as Map<String, dynamic>))
+      children: (json['children'] as List<dynamic>?)
+          ?.map((e) => RouterChildEntity.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
 
-Map<String, dynamic> _$MenuRouterToJson(MenuRouter instance) =>
+Map<String, dynamic> _$RouterEntityToJson(RouterEntity instance) =>
     <String, dynamic>{
       'path': instance.path,
       'id': instance.id,
@@ -53,8 +53,8 @@ Map<String, dynamic> _$MenuRouterToJson(MenuRouter instance) =>
       'children': instance.children,
     };
 
-MenuRouterChild _$MenuRouterChildFromJson(Map<String, dynamic> json) =>
-    MenuRouterChild(
+RouterChildEntity _$RouterChildEntityFromJson(Map<String, dynamic> json) =>
+    RouterChildEntity(
       path: json['path'] as String?,
       id: (json['id'] as num?)?.toInt(),
       name: json['name'] as String?,
@@ -63,11 +63,11 @@ MenuRouterChild _$MenuRouterChildFromJson(Map<String, dynamic> json) =>
       component: json['component'] as String?,
       meta: json['meta'] == null
           ? null
-          : MenuRouterMeta.fromJson(json['meta'] as Map<String, dynamic>),
+          : RouterMetaEntity.fromJson(json['meta'] as Map<String, dynamic>),
       perms: json['perms'] as String?,
     );
 
-Map<String, dynamic> _$MenuRouterChildToJson(MenuRouterChild instance) =>
+Map<String, dynamic> _$RouterChildEntityToJson(RouterChildEntity instance) =>
     <String, dynamic>{
       'path': instance.path,
       'id': instance.id,

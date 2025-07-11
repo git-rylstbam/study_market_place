@@ -15,5 +15,5 @@ abstract class IHomeApi {
   factory IHomeApi(Dio dio) = _IHomeApi;
 
   @GET('system/menu/getRouters')
-  Future<ApiResult<List<MenuRouter>>> queryRouters();
+  Future<ApiResult<List<RouterEntity>>> queryRouters();
 }

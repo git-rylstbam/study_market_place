@@ -15,6 +15,12 @@ void main() async {
   runApp(const MyApp());
 }
 
+abstract class Globals {
+  static GlobalKey<NavigatorState> key = GlobalKey();
+
+  static NavigatorState get outNav => key.currentState!;
+}
+
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
@@ -24,7 +30,7 @@ class MyApp extends StatelessWidget {
     debugShowCheckedModeBanner: false,
     theme: lightTheme,
     scrollBehavior: _MyScrollBehavior(),
-    getPages: [Routes.loginPage, ...Routes.routes],
+    getPages: Routes.routes,
     initialRoute: Routes.login,
   );
 }

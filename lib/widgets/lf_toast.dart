@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
 import '../resources/colors.dart';
 
@@ -10,9 +9,9 @@ import '../resources/colors.dart';
 class LFToast {
   static bool _visible = false;
 
-  static void toast(String? message) {
+  static void toast(BuildContext context, String? message) {
     if (_visible) return;
-    final overlay = Overlay.of(Get.context!);
+    final overlay = Overlay.of(context);
     final overlayEntry = OverlayEntry(
       builder: (_) => Center(
         child: Material(

@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
+import '../../../core/app_service.dart';
 import '../../../core/configs.dart';
+import '../../../extensions/get_extension.dart';
 import '../../../http/http.dart';
+import '../../../routes.dart';
 import '../../../widgets/lf_elevated_button.dart';
-// import 'package:study_market_place/pages/login/page.dart';
 import '../../../widgets/lf_label_textfield.dart';
-import '../../../widgets/lf_toast.dart';
 import '../model/login_model.dart';
 
 /// CreateDate: 2025/7/4 17:23
@@ -20,8 +22,6 @@ class LoginBlock extends StatefulWidget {
 }
 
 class _LoginBlockState extends State<LoginBlock> {
-  // late final _state = LoginPage.of(context);
-
   final _emailController = TextEditingController(
     text: EnvConfig.isProd ? null : 'mp@lf.net',
   );
@@ -81,6 +81,15 @@ class _LoginBlockState extends State<LoginBlock> {
     );
     final value = await Http.getLoginApi().login(body);
     if (value.isFaield) return;
-    LFToast.toast(value.data?.access_token);
+    if (value.data == null) return;
+    if (value.data!.access_token == null) return;
+    _queryUserInfo(value.data!.access_token!);
+  }
+
+  Future<void> _queryUserInfo(String token) async {
+    final value = await Http.getLoginApi().queryUserInfo(token: token);
+    if (value.isFaield) return;
+    await AppService.to.saveUserInfo(token, value);
+    Get.lfOffNamedUntil(Routes.home);
   }
 }

@@ -8,8 +8,8 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'home_model.g.dart';
 
-abstract class BaseMenuRouter {
-  const BaseMenuRouter({
+abstract class BaseRouterEntity {
+  const BaseRouterEntity({
     this.path,
     this.id,
     this.name,
@@ -25,30 +25,30 @@ abstract class BaseMenuRouter {
   final bool? hidden;
   final String? internationalName;
   final String? component;
-  final MenuRouterMeta? meta;
+  final RouterMetaEntity? meta;
 }
 
 @JsonSerializable()
-class MenuRouterMeta {
-  const MenuRouterMeta({this.title, this.icon, this.noCache, this.link});
+class RouterMetaEntity {
+  const RouterMetaEntity({this.title, this.icon, this.noCache, this.link});
 
-  factory MenuRouterMeta.fromJson(Map<String, dynamic> json) =>
-      _$MenuRouterMetaFromJson(json);
+  factory RouterMetaEntity.fromJson(Map<String, dynamic> json) =>
+      _$RouterMetaEntityFromJson(json);
 
   final String? title;
   final String? icon;
   final bool? noCache;
   final String? link;
 
-  Map<String, dynamic> toJson() => _$MenuRouterMetaToJson(this);
+  Map<String, dynamic> toJson() => _$RouterMetaEntityToJson(this);
 
   @override
   String toString() => jsonEncode(this);
 }
 
 @JsonSerializable()
-class MenuRouter extends BaseMenuRouter {
-  const MenuRouter({
+class RouterEntity extends BaseRouterEntity {
+  const RouterEntity({
     super.path,
     super.id,
     super.name,
@@ -58,30 +58,30 @@ class MenuRouter extends BaseMenuRouter {
     super.meta,
     this.redirect,
     this.alwaysShow,
-    required this.children,
+     this.children,
   });
 
-  factory MenuRouter.fromJson(Map<String, dynamic> json) =>
-      _$MenuRouterFromJson(json);
+  factory RouterEntity.fromJson(Map<String, dynamic> json) =>
+      _$RouterEntityFromJson(json);
 
   final String? redirect;
   final bool? alwaysShow;
-  final List<MenuRouterChild> children;
+  final List<RouterChildEntity>? children;
 
   String? get defaultPath {
-    final temp = children.firstOrNull?.path ?? path;
+    final temp = children?.firstOrNull?.path ?? path;
     return temp == null ? null : '/$temp';
   }
 
-  Map<String, dynamic> toJson() => _$MenuRouterToJson(this);
+  Map<String, dynamic> toJson() => _$RouterEntityToJson(this);
 
   @override
   String toString() => jsonEncode(this);
 }
 
 @JsonSerializable()
-class MenuRouterChild extends BaseMenuRouter {
-  const MenuRouterChild({
+class RouterChildEntity extends BaseRouterEntity {
+  const RouterChildEntity({
     super.path,
     super.id,
     super.name,
@@ -92,12 +92,12 @@ class MenuRouterChild extends BaseMenuRouter {
     this.perms,
   });
 
-  factory MenuRouterChild.fromJson(Map<String, dynamic> json) =>
-      _$MenuRouterChildFromJson(json);
+  factory RouterChildEntity.fromJson(Map<String, dynamic> json) =>
+      _$RouterChildEntityFromJson(json);
 
   final String? perms;
 
-  Map<String, dynamic> toJson() => _$MenuRouterChildToJson(this);
+  Map<String, dynamic> toJson() => _$RouterChildEntityToJson(this);
 
   @override
   String toString() => jsonEncode(this);

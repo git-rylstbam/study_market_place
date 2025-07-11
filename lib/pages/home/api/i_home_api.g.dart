@@ -19,13 +19,13 @@ class _IHomeApi implements IHomeApi {
   String? baseUrl;
 
   @override
-  Future<ApiResult<MenuRouter>> getRouters() async {
+  Future<ApiResult<List<RouterEntity>>> queryRouters() async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final Map<String, dynamic>? _data = null;
     final _result = await _dio.fetch<Map<String, dynamic>>(
-        _setStreamType<ApiResult<MenuRouter>>(Options(
+        _setStreamType<ApiResult<List<RouterEntity>>>(Options(
       method: 'GET',
       headers: _headers,
       extra: _extra,
@@ -37,9 +37,12 @@ class _IHomeApi implements IHomeApi {
               data: _data,
             )
             .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
-    final value = ApiResult<MenuRouter>.fromJson(
+    final value = ApiResult<List<RouterEntity>>.fromJson(
       _result.data!,
-      (json) => MenuRouter.fromJson(json as Map<String, dynamic>),
+      (json) => (json as List<dynamic>)
+          .map<RouterEntity>(
+              (i) => RouterEntity.fromJson(i as Map<String, dynamic>))
+          .toList(),
     );
     return value;
   }

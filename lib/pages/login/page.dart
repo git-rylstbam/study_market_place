@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import '../../core/configs.dart';
 import '../../resources/colors.dart';
 import '../../theme.dart';
-import 'widgets/login_background.dart';
 import 'widgets/login_block.dart';
 
 /// CreateDate: 2025/7/4 16:24
@@ -19,51 +18,65 @@ marketplace
 
 const _kBlockSwitchingDuration = Duration(milliseconds: 266);
 
-class LoginPage extends StatefulWidget {
+class LoginPage extends StatelessWidget {
   const LoginPage({super.key});
 
-  static LoginPageState of(BuildContext context) =>
-      context.findAncestorStateOfType<LoginPageState>()!;
-
   @override
-  State<LoginPage> createState() => LoginPageState();
-}
-
-class LoginPageState extends State<LoginPage> {
-  @override
-  Widget build(BuildContext context) =>
-      Scaffold(body: Stack(children: [_background, _logo, _block]));
-
-  Widget get _background => const Align(
-    alignment: Alignment.bottomLeft,
-    child: Stack(
-      alignment: Alignment(-.75, .55),
+  Widget build(BuildContext context) => Scaffold(
+    body: Stack(
       children: [
-        LoginBackground(),
-        Text(
-          _kWelcomeText,
-          style: TextStyle(
-            fontSize: 60.0,
-            fontWeight: FontWeight.bold,
-            color: Colors.white,
+        Align(
+          alignment: Alignment.bottomLeft,
+          child: Stack(
+            alignment: const Alignment(-.75, .55),
+            children: [
+              _background,
+              const Text(
+                _kWelcomeText,
+                style: TextStyle(
+                  fontSize: 60.0,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white,
+                ),
+              ),
+            ],
           ),
+        ),
+        const Positioned(
+          left: 32.0,
+          top: 22.0,
+          child: Text(EnvConfig.logoName, style: TextStyle(fontSize: 60.0)),
+        ),
+        Align(
+          alignment: const Alignment(.8, .0),
+          child: Stack(children: [_block, _fontSwitcher]),
         ),
       ],
     ),
   );
 
-  Widget get _logo => const Positioned(
-    left: 32.0,
-    top: 22.0,
-    child: Text(EnvConfig.logoName, style: TextStyle(fontSize: 60.0)),
+  Widget get _background => Stack(
+    children: [
+      Positioned(
+        left: 100.0,
+        bottom: 100.0,
+        child: CustomPaint(
+          size: const Size.square(500.0),
+          painter: _SolidCirclePainter(),
+        ),
+      ),
+      Positioned(
+        top: 100.0,
+        right: 100.0,
+        child: CustomPaint(
+          size: const Size.square(500.0),
+          painter: _SolidCirclePainter(),
+        ),
+      ),
+    ],
   );
 
-  Widget get _block => Align(
-    alignment: const Alignment(.8, .0),
-    child: Stack(children: [_input, _fontSwitcher]),
-  );
-
-  Widget get _input => AnimatedContainer(
+  Widget get _block => AnimatedContainer(
     duration: _kBlockSwitchingDuration,
     curve: Curves.easeInOut,
     width: 540.0,
@@ -101,4 +114,22 @@ class LoginPageState extends State<LoginPage> {
       ),
     ),
   );
+}
+
+class _SolidCirclePainter extends CustomPainter {
+  @override
+  void paint(Canvas canvas, Size size) {
+    final paint = Paint()
+      ..color = MyColors.defaultColor
+      ..style = PaintingStyle.fill
+      ..maskFilter = const MaskFilter.blur(BlurStyle.normal, 50);
+    canvas.drawCircle(
+      Offset(size.width / 2, size.height / 2),
+      size.width / 2,
+      paint,
+    );
+  }
+
+  @override
+  bool shouldRepaint(_SolidCirclePainter oldDelegate) => false;
 }

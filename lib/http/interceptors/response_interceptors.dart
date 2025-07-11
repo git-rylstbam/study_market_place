@@ -1,8 +1,8 @@
 import 'package:dio/dio.dart';
+import 'package:flutter/material.dart';
 
 import '../../core/app_service.dart';
 import '../../core/model/result_code.dart';
-import '../../widgets/lf_toast.dart';
 
 /// CreateDate: 2025/7/8 16:28
 /// Author: Lee
@@ -14,9 +14,9 @@ class ResponseInterceptors extends InterceptorsWrapper {
     if (response.data case {
       'code': final int code,
     } when code != ResultCode.success) {
-      LFToast.toast(response.data['msg']);
+      debugPrint(response.data['msg']);
       if (code == ResultCode.token_overdue) {
-        AppService().removeUser();
+        AppService().logout();
       }
     }
     super.onResponse(response, handler);
@@ -25,7 +25,7 @@ class ResponseInterceptors extends InterceptorsWrapper {
   @override
   void onError(DioException err, ErrorInterceptorHandler handler) {
     if (err.type == DioExceptionType.cancel) return;
-    LFToast.toast(err.message);
+    debugPrint(err.message);
     super.onError(err, handler);
   }
 }

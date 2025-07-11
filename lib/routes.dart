@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import 'pages/home/page.dart';
@@ -15,7 +16,13 @@ abstract class Routes {
 
   static const login = '/login';
 
-  static final routes = [GetPage(name: home, page: () => const HomePage())];
+  static final routes = [
+    GetPage(name: login, page: () => const LoginPage()),
+    GetPage(name: home, page: () => const HomePage()),
+  ];
 
-  static final loginPage = GetPage(name: login, page: () => const LoginPage());
+  static final loadingPage = GetPage(
+    name: loading,
+    page: () => const Center(child: CircularProgressIndicator()),
+  );
 }
