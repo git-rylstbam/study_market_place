@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
+import '../../http/http.dart';
 import '../../widgets/lf_outermost_shell.dart';
+import 'model/market_model.dart';
 
 /// CreateDate: 2025/7/14 16:59
 /// Author: Lee
@@ -14,6 +16,31 @@ class MarketPage extends StatefulWidget {
 }
 
 class _MarketPageState extends State<MarketPage> {
+  final _marketsNotifier = ValueNotifier<List<MarketEntity>>([]);
+
   @override
-  Widget build(BuildContext context) => LFOutermostShell();
+  void initState() {
+    super.initState();
+    _queryMarketList();
+  }
+
+  @override
+  void dispose() {
+    _marketsNotifier.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) =>
+      LFOutermostShell(child: Expanded(child: const SizedBox.shrink()));
+
+  Future<void> _queryMarketList() async {
+    final value = await Http.getMarketApi().queryMarketList(
+      pageNum: 1,
+      pageSize: 10,
+    );
+    if (value.isFaield) return;
+    if (value.rows == null || value.rows!.isEmpty) return;
+    _marketsNotifier.value = value.rows!;
+  }
 }

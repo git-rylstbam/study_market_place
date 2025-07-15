@@ -34,7 +34,7 @@ class MyApp extends StatelessWidget {
     theme: lightTheme,
     scrollBehavior: _MyScrollBehavior(),
     getPages: Routes.routes,
-    initialRoute: Routes.dashboard,
+    initialRoute: Routes.cube_dashboard,
     transitionDuration: Duration.zero,
     defaultTransition: Transition.noTransition,
     unknownRoute: Routes.errorPage,
