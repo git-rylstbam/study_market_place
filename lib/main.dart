@@ -34,6 +34,10 @@ class MyApp extends StatelessWidget {
     theme: lightTheme,
     scrollBehavior: _MyScrollBehavior(),
     getPages: Routes.routes,
+    initialRoute: Routes.dashboard,
+    transitionDuration: Duration.zero,
+    defaultTransition: Transition.noTransition,
+    unknownRoute: Routes.errorPage,
     builder: (context, child) => LFOverflowBox(
       minWidth: 1180.0,
       alignment: Alignment.centerLeft,

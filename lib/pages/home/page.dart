@@ -3,8 +3,10 @@ import 'package:get/get.dart';
 
 import '../../core/app_service.dart';
 import '../../core/configs.dart';
+import '../../extensions/get_extension.dart';
 import '../../http/http.dart';
 import '../../resources/colors.dart';
+import '../../routes.dart';
 import '../../widgets/lf_popup_menu_button.dart';
 import '../../widgets/lf_toast.dart';
 import 'model/home_model.dart';
@@ -107,7 +109,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                       height: 40.0,
                       decoration: const BoxDecoration(
                         border: Border(
-                          bottom: BorderSide(color: MyColors.defaultColor),
+                          bottom: BorderSide(color: MyColors.dividerColor),
                         ),
                       ),
                       child: _buildTopTabBar(_routersNotifier.value),
@@ -163,6 +165,9 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
           length: _selectRouterNotifier.value?.children?.length ?? 0,
           vsync: this,
         );
+        Get.lfOffNamedUntil(
+          _selectRouterNotifier.value?.defaultPath ?? Routes.error,
+        );
       },
     ),
   );
@@ -182,7 +187,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                   padding: const EdgeInsets.fromLTRB(50.0, 30.0, 10.0, 30.0),
                   decoration: const BoxDecoration(
                     border: Border(
-                      right: BorderSide(color: MyColors.defaultColor),
+                      right: BorderSide(color: MyColors.dividerColor),
                     ),
                   ),
                   child: _buildLeftTabBar(value),
@@ -233,7 +238,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
             [],
         onTap: (index) {
           _selectChildNotifier.value = value?.children?[index];
-          Get.toNamed(_selectChildNotifier.value?.path ?? '');
+          Get.lfOffNamedUntil('/${_selectChildNotifier.value?.path}');
         },
       ),
     ],

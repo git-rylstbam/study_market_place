@@ -89,10 +89,6 @@ class _LoginBlockState extends State<LoginBlock> {
     final value = await Http.getLoginApi().queryUserInfo(token: token);
     if (value.isFaield) return;
     await AppService.to.saveUserInfo(token, value);
-    _toHomePage();
-  }
-
-  void _toHomePage() {
     Globals.outNavigatorState.pushReplacementNamed(Routes.home);
   }
 }
