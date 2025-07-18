@@ -16,6 +16,17 @@ abstract class ApiResultable {
   bool get isFaield => !isSuccess;
 }
 
+// "skinName": "本地测试专用皮肤",
+// "reseller": "MNO_1712353781359837184",
+// "enterpriseName": "tttttttest",
+// "creator": "marketplace",
+// "source": 1
+
+// {
+// "skinId": "1945658783854878720",
+// "domainName": "http://localhost:58330/#/login"
+// }
+
 abstract class LFApiResultable extends ApiResultable {
   const LFApiResultable({this.code, this.msg});
 

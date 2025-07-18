@@ -12,8 +12,9 @@ MarketEntity _$MarketEntityFromJson(Map<String, dynamic> json) => MarketEntity(
       imgUrl: json['goodsUrl'] as String?,
       price: (json['price'] as num?)?.toDouble(),
       userPrice: (json['userPrice'] as num?)?.toDouble(),
-      currency: json['currency'] as String?,
-      userCurrency: json['userCurrency'] as String?,
+      currency: $enumDecodeNullable(_$CurrencyEnumMap, json['currency']),
+      userCurrency:
+          $enumDecodeNullable(_$CurrencyEnumMap, json['userCurrency']),
     );
 
 Map<String, dynamic> _$MarketEntityToJson(MarketEntity instance) =>
@@ -26,3 +27,13 @@ Map<String, dynamic> _$MarketEntityToJson(MarketEntity instance) =>
       'currency': instance.currency,
       'userCurrency': instance.userCurrency,
     };
+
+const _$CurrencyEnumMap = {
+  Currency.CNY: 'CNY',
+  Currency.USD: 'USD',
+  Currency.IDR: 'IDR',
+  Currency.GBP: 'GBP',
+  Currency.EUR: 'EUR',
+  Currency.JPY: 'JPY',
+  Currency.TWD: 'TWD',
+};

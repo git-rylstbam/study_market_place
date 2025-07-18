@@ -66,7 +66,7 @@ class LoginPage extends StatelessWidget {
         ),
       ),
       Positioned(
-        top: 100.0,
+        top:100.0,
         right: 100.0,
         child: CustomPaint(
           size: const Size.square(500.0),

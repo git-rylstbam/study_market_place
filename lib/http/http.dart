@@ -1,4 +1,5 @@
 import '../../pages/login/api/i_login_api.dart';
+import '../core/api/file_api.dart';
 import '../pages/home/api/i_home_api.dart';
 import '../pages/market/api/i_market_api.dart';
 import 'http_manager.dart';
@@ -15,4 +16,6 @@ abstract class Http {
   static IHomeApi getHomeApi() => IHomeApi(_httpManager.dio);
 
   static IMarketApi getMarketApi() => IMarketApi(_httpManager.dio);
+
+  static IFileApi getFileApi() => IFileApi(_httpManager.dio);
 }

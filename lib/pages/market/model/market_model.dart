@@ -2,6 +2,8 @@ import 'dart:convert';
 
 import 'package:json_annotation/json_annotation.dart';
 
+import '../../../enums/currency.dart';
+
 /// CreateDate: 2025/7/15 16:21
 /// Author: Lee
 /// Description:
@@ -30,12 +32,12 @@ class MarketEntity {
   final String? imgUrl;
   final double? price;
   final double? userPrice;
-  final String? currency;
-  final String? userCurrency;
+  final Currency? currency;
+  final Currency? userCurrency;
 
-  String get displayPrice => userPrice?.toString() ?? price?.toString() ?? '--';
+  double? get displayPrice => userPrice ?? price;
 
-  String get displayCurrency => userCurrency ?? currency ?? '--';
+  Currency? get displayCurrency => userCurrency ?? currency;
 
   Map<String, dynamic> toJson() => _$MarketEntityToJson(this);
 

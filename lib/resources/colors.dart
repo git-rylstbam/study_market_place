@@ -5,7 +5,8 @@ import 'dart:ui';
 /// Description:
 
 abstract class MyColors {
-  static const defaultColor = Color(0xFF6950A1);
+  // static const defaultColor = Color(0xFF6950A1);
+  static const defaultColor = Color(0xFFFF7500);
 
   static const disableColor = Color(0xFFF2F4F9);
   static const errorColor = Color(0xFFED1941);

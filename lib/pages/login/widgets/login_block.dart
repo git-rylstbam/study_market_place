@@ -22,11 +22,11 @@ class LoginBlock extends StatefulWidget {
 
 class _LoginBlockState extends State<LoginBlock> {
   final _emailController = TextEditingController(
-    text: EnvConfig.isProd ? null : 'mp@lf.net',
+    text: EnvConfig.isProd ? null : 'mp@lf.net', // 1147468701@qq.com
   );
 
   final _secretController = TextEditingController(
-    text: EnvConfig.isProd ? null : 'Links@2024',
+    text: EnvConfig.isProd ? null : 'Links@2024', // Links@2025
   );
 
   @override
