@@ -7,7 +7,7 @@ import 'package:get_storage/get_storage.dart';
 import 'core/app_service.dart';
 import 'pages/home/page.dart';
 import 'pages/home/widgets/lf_overflow_box.dart';
-import 'pages/login/page.dart';
+import 'pages/login/widgets/login_block.dart';
 import 'routes.dart';
 import 'theme.dart';
 
@@ -28,33 +28,28 @@ class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
   @override
-  Widget build(BuildContext context) => GetMaterialApp(
-    title: 'Study Market Place',
-    debugShowCheckedModeBanner: false,
-    theme: lightTheme,
-    scrollBehavior: _MyScrollBehavior(),
-    getPages: Routes.routes,
-    initialRoute: Routes.cube_dashboard,
-    transitionDuration: Duration.zero,
-    defaultTransition: Transition.noTransition,
-    unknownRoute: Routes.errorPage,
-    builder: (context, child) => LFOverflowBox(
-      minWidth: 1180.0,
-      alignment: Alignment.centerLeft,
-      child: Navigator(
-        key: Globals.outNavigatorKey,
-        onGenerateRoute: (settings) => MaterialPageRoute(
-          builder: (_) => settings.name == Routes.login
-              ? const LoginPage()
-              : HomePage(child: child),
+  Widget build(BuildContext context) => GetBuilder(
+    id: RouterIDEnum.routes,
+    init: AppService(),
+    builder: (controller) => GetMaterialApp(
+      title: 'Study Market Place',
+      debugShowCheckedModeBanner: false,
+      theme: lightTheme,
+      scrollBehavior: _MyScrollBehavior(),
+      getPages: [Routes.loginPage, ...Routes.routes],
+      initialRoute: Routes.login,
+      transitionDuration: Duration.zero,
+      defaultTransition: Transition.noTransition,
+      unknownRoute: Routes.errorPage,
+      builder: (context, child) => LFOverflowBox(
+        minWidth: 1180.0,
+        alignment: Alignment.centerLeft,
+        child: Navigator(
+          key: Globals.outNavigatorKey,
+          onGenerateInitialRoutes: (_, __) => [
+            MaterialPageRoute(builder: (_) => HomePage(child: child)),
+          ],
         ),
-        onGenerateInitialRoutes: (_, __) => [
-          MaterialPageRoute(
-            builder: (_) => AppService.to.isLogin
-                ? HomePage(child: child)
-                : const LoginPage(),
-          ),
-        ],
       ),
     ),
   );

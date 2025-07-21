@@ -4,7 +4,6 @@ import 'package:get/get.dart';
 import '../../core/app_service.dart';
 import '../../core/configs.dart';
 import '../../extensions/get_extension.dart';
-import '../../http/http.dart';
 import '../../resources/colors.dart';
 import '../../routes.dart';
 import '../../widgets/lf_popup_menu_button.dart';
@@ -41,9 +40,13 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
   @override
   void initState() {
     super.initState();
-    _queryRoutes();
-    _hTabController = TabController(length: 0, vsync: this);
+    print('横向: ${AppService.to.routers?.length}');
+    _hTabController = TabController(
+      length: AppService.to.routers?.length ?? 0,
+      vsync: this,
+    );
     _vTabController = TabController(length: 0, vsync: this);
+    _selectChildNotifier.value = AppService.to.routers?[0].children?[0];
   }
 
   @override
@@ -243,15 +246,6 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
       ),
     ],
   );
-
-  Future<void> _queryRoutes() async {
-    final value = await Http.getHomeApi().queryRouters();
-    if (value.isFaield) return;
-    if (value.data == null || value.data!.isEmpty) return;
-    _routersNotifier.value = value.data!;
-    _selectChildNotifier.value = value.data![0].children?[0];
-    _hTabController = TabController(length: value.data!.length, vsync: this);
-  }
 }
 
 class _TopMenuIndicator extends Decoration {

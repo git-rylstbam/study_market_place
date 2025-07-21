@@ -63,18 +63,20 @@ class _MarketPageState extends State<MarketPage> {
       child: Column(
         children: [
           const SizedBox(height: 25.0),
-          ValueListenableBuilder(
-            valueListenable: _marketsNotifier,
-            builder: (_, value, __) => GridView(
-              padding: const EdgeInsets.symmetric(horizontal: 60.0),
-              key: ValueKey(value),
-              gridDelegate: const _SliverGridDelegateWithFixedCrossAxisExtent(
-                childMainAxisExtent: kItemSize - kPriceHeight,
-                childCrossAxisExtent: kItemSize,
-                minCrossSpacing: 50.0,
-                mainAxisSpacing: 12.0,
+          Expanded(
+            child: ValueListenableBuilder(
+              valueListenable: _marketsNotifier,
+              builder: (_, value, __) => GridView(
+                padding: const EdgeInsets.symmetric(horizontal: 60.0),
+                key: ValueKey(value),
+                gridDelegate: const _SliverGridDelegateWithFixedCrossAxisExtent(
+                  childMainAxisExtent: kItemSize - kPriceHeight,
+                  childCrossAxisExtent: kItemSize,
+                  minCrossSpacing: 50.0,
+                  mainAxisSpacing: 12.0,
+                ),
+                children: value.map((e) => MarketChild(entity: e)).toList(),
               ),
-              children: value.map((e) => MarketChild(entity: e)).toList(),
             ),
           ),
         ],

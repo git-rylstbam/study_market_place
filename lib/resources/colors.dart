@@ -15,5 +15,5 @@ abstract class MyColors {
 
   static const headerColor = Color(0xFFF6F8FA);
 
-  static const dividerColor = Color(0x446950A1);
+  static const dividerColor = defaultColor;
 }

@@ -3,7 +3,9 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../main.dart';
+import '../extensions/get_extension.dart';
+import '../pages/home/model/home_model.dart';
+import '../pages/login/widgets/login_block.dart';
 import '../routes.dart';
 import '../util/storage.dart';
 import 'keys.dart';
@@ -13,7 +15,7 @@ import 'model/user_info.dart';
 /// Author: Lee
 /// Description:
 
-class AppService extends GetxService {
+class AppService extends GetxController {
   static AppService get to => Get.find();
 
   StorageUtilCore get storage => StorageUtil.shared;
@@ -35,6 +37,15 @@ class AppService extends GetxService {
 
   UserInfo? get userInfo => _userInfo;
 
+  List<RouterEntity>? _routers;
+
+  List<RouterEntity>? get routers => _routers;
+
+  set routers(List<RouterEntity>? routers) {
+    _routers = routers;
+    update([RouterIDEnum.routes]);
+  }
+
   Locale? get locale => const Locale('en-US');
 
   Future<void> saveUserInfo(String token, UserInfo value) async {
@@ -49,6 +60,7 @@ class AppService extends GetxService {
     await storage.remove(Keys.key_token);
     await storage.remove(Keys.key_user_info);
     _userInfo = null;
-    Globals.outNavigatorState.pushReplacementNamed(Routes.login);
+    Get.lfOffNamedUntil(Routes.login);
+    // Globals.outNavigatorState.pushReplacementNamed(Routes.login);
   }
 }

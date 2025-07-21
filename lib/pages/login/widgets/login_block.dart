@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import '../../../core/app_service.dart';
 import '../../../core/configs.dart';
+import '../../../extensions/get_extension.dart';
 import '../../../http/http.dart';
-import '../../../main.dart';
 import '../../../routes.dart';
 import '../../../widgets/lf_elevated_button.dart';
 import '../../../widgets/lf_label_textfield.dart';
@@ -89,6 +90,18 @@ class _LoginBlockState extends State<LoginBlock> {
     final value = await Http.getLoginApi().queryUserInfo(token: token);
     if (value.isFaield) return;
     await AppService.to.saveUserInfo(token, value);
-    Globals.outNavigatorState.pushReplacementNamed(Routes.home);
+    _queryRoutes();
+  }
+
+  Future<void> _queryRoutes() async {
+    final value = await Http.getHomeApi().queryRouters();
+    if (value.isFaield) return;
+    if (value.data == null || value.data!.isEmpty) return;
+    AppService.to.routers = value.data;
+    Get.lfOffNamedUntil(
+      AppService.to.routers?.firstOrNull?.defaultPath ?? Routes.error,
+    );
   }
 }
+
+enum RouterIDEnum { routes }
